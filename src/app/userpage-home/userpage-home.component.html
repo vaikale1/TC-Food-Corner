@@ -1,0 +1,22 @@
+<div class="tabs">
+  <button *ngFor="let category of categories"
+          (click)="onTabChange(category)"
+          [class.active]="category === selectedCategory">
+    {{ category }}
+  </button>
+</div>
+
+<div *ngIf="foods.length > 0 " class="form-group">
+  <ul>
+    <li *ngFor="let food of foods">
+      <a href=""><img src="{{food?.itemImage}}" alt="" ></a><br>
+      <p> {{ food.itemName }}</p>
+      <p> {{ food.price }}</p>
+      <p> {{ food.description }}</p>
+      <p>{{ food.category }}</p>
+
+
+    </li>
+
+  </ul>
+</div>
