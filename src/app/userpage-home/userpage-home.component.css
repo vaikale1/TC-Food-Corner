@@ -2,6 +2,12 @@
   padding: 10px;
   font-size: 12px;
 }
+.form-group p{
+    margin: 5px 0;
+    height: 15px; /* Fixed height */
+    line-height: 15px; /* Center text vertically */
+    text-overflow: ellipsis; /* Optional: Add ellipsis for overflow */
+}
 ul {
   list-style: none;
   padding: 0;
@@ -9,6 +15,34 @@ ul {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+}
+.form-group button {
+  background-color: #fff;
+  color: #4CAF50;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #4CAF50 ;
+
+}
+.food-details {
+  display: flex; /* Align items in a row */
+  justify-content: space-between; /* Space out items evenly */
+  flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+  width: 100%; /* Make it full width of the list item */
+}
+li img {
+  border-radius: 8px;
+  width: 100px;
+  height: 93px;
+  object-fit: cover;
+  display: block;
+}
+
+.form-group button:hover {
+  color:green;
+  border: 1px solid green ;
 }
 
 li {
@@ -18,7 +52,6 @@ li {
   padding: 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   width:280px;
-  /* width: calc(33% - 15px); */
   height: 280px;
   box-sizing: border-box;
   text-align: center;
@@ -27,31 +60,28 @@ li {
   align-items: center;
 }
 
-li img {
-  border-radius: 8px;
-  width: 100px;
-  height: 100px;
-  object-fit: cover; /* Ensure the image covers the area */
-}
-
 li p {
   margin: 5px 0;
 }
 .tabs {
   display: flex;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #fff ;
 }
 
 .tabs button {
-  padding: 10px;
+  background-color: #f0f0f0;
   border: none;
-  background: #f1f1f1;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  margin-right: 5px;
 }
-
 .tabs button.active {
-  background: #ccc;
-  font-weight: bold;
+  background-color: #fff;
+  color: #FF5733 ;
+  border: 1px solid #FF5733 ;
 }
 
+
+/* .tabs button:hover {
+  background-color: #3e8e41;
+} */

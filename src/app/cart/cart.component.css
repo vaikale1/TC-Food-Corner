@@ -1,0 +1,155 @@
+.container {
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h3 {
+  margin-top: 0;
+}
+
+.cart-item-details span {
+  font-size: 16px;
+  color: #666;
+}
+
+.cart-item-subtotal {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cart-item button {
+  background-color: #ff8f4d;
+  color: #fff;
+  border: none;
+  padding: 5px 15px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.cart-item button:hover {
+  background-color: #FF5733 ;
+}
+
+.cart-totals {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-top: 1px solid #ddd;
+}
+
+.cart-totals-details {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cart-actions {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.cart-actions button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cart-actions button:hover {
+  background-color: #3e8e41;
+}
+
+.cart-actions button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.orderListUl {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.confirmed {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+.order-item {
+  padding: 5px;
+  padding-left: 10px;
+  margin-left: 5px;
+}
+
+.orderListUl li {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.orderListUl li > p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+.orderListUl li ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.orderListUl li ul li {
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+}
+.orderListUl li ul li:first-child {
+  border-top: none;
+}
+.orderListUl li ul li p {
+  margin: 5px 0;
+  font-weight: normal;
+}
+#orderList .no-orders {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.orderListUl button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.orderListUl button:hover {
+  background-color: #3e8e41;
+}

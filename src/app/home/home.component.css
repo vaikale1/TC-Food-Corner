@@ -1,9 +1,9 @@
-/* General Modal Styles */
 *{
-  font-size: 10px;
+  font-size: 12px;
 }
+
 .container{
-  font-size: 10px;
+  font-size: 12px;
 }
 .modal {
   color: black;
@@ -38,12 +38,18 @@
 .form-group {
   padding: 10px;
 }
+.form-group p{
+    margin: 5px 0;
+    height: 15px;
+    line-height: 15px;
+    text-overflow: ellipsis;
+}
 .button-container-add{
   position: relative;
   top: 90px;
 }
 
-ul {
+.form-group ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -52,47 +58,66 @@ ul {
   gap: 15px;
 }
 
-li {
+#foodList li {
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #f9f9f9;
   padding: 15px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  width:280px;
-  /* width: calc(33% - 15px); */
-  height: 280px;
+  width: 280px;
+  height: 280px; /* Fixed height for each list item */
   box-sizing: border-box;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+.food-details {
+  display: flex; /* Align items in a row */
+  justify-content: space-between; /* Space out items evenly */
+  flex-wrap: wrap; /* Allow wrapping to the next line if needed */
+  width: 100%; /* Make it full width of the list item */
+}
 li img {
   border-radius: 8px;
   width: 100px;
-  height: 100px;
-  object-fit: cover; /* Ensure the image covers the area */
+  height: 93px;
+  object-fit: cover;
+  display: block;
 }
 
-li p {
+ li p {
   margin: 5px 0;
 }
 
 li button {
   margin: 5px;
-  background-color: #007bff;
-  color: white;
+  background-color: #fff;
+  color: #4CAF50;
   border: none;
   padding: 8px 15px;
   font-size: 14px;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border: 1px solid #4CAF50 ;
 }
 
 li button:hover {
-  background-color: #0056b3;
+  color:green;
+  border: 1px solid green ;
+}
+button {
+  margin: 5px;
+  background-color: #fff;
+  color: #4CAF50;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid #4CAF50 ;
 }
 
 
@@ -101,7 +126,7 @@ button[type="button"] {
   padding: 10px;
   border: none;
   color: white;
-  background-color: #007bff;
+  background-color: green;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
@@ -109,7 +134,7 @@ button[type="button"] {
 
 button[type="submit"]:hover,
 button[type="button"]:hover {
-  background-color: #0056b3;
+  background-color: green;
 }
 
 .modal-content {
@@ -143,6 +168,30 @@ button[type="button"]:hover {
   width: 70px;
   font-weight: bold;
 }
+.tab {
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+.tab .tablinks {
+  background-color:#fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  transition: 0.3s;
+}
+.tab .tablinks.active {
+  background-color: #fff;
+  color: #FF5733 ;
+  border: 1px solid #FF5733 ;
+}
+.tabcontent {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
 
 .modal-content-row input,
 .modal-content-row textarea {
@@ -163,4 +212,69 @@ button[type="button"]:hover {
   margin-right: 40px;
 
 }
+.order-item {
+  padding: 5px;
+  padding-left: 10px;
+  margin-left: 5px;
+}
+
+#orderList {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+#orderList h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+.orderListUl {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.orderListUl li {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.orderListUl li > p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+.orderListUl li ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.orderListUl li ul li {
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+}
+.orderListUl li ul li:first-child {
+  border-top: none;
+}
+.orderListUl li ul li p {
+  margin: 5px 0;
+  font-weight: normal;
+}
+#orderList .no-orders {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.confirmed {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+
+
 

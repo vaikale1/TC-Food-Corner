@@ -1,106 +1,135 @@
-<!-- Add Food Modal -->
+<div class="tab">
+  <button class="tablinks" (click)="openTab($event, 'foodList')">Food List</button>
+  <button class="tablinks" (click)="openTab($event, 'orderList')">Order List</button>
+</div>
 
-<div *ngIf="isAddFoodModalOpen" id="addFoodModal" class="modal" >
-  <div class="modal-content">
-    <span class="close" (click)="closeModal('addFoodModal')">&times;</span>
-    <h2>Add Food</h2>
-    <form (ngSubmit)="onAddFood(addForm)" #addForm="ngForm">
-     <div class="modal-content-row"> <label for="name" >Name:</label>
-      <input type="text" name="name" [(ngModel)]="newFood.itemName" required><br>
+<div id="foodList" class="tabcontent">
+  <div *ngIf="isAddFoodModalOpen" id="addFoodModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal('addFoodModal')">&times;</span>
+      <h2>Add Food</h2>
+      <form (ngSubmit)="onAddFood(addForm)" #addForm="ngForm">
+        <div class="modal-content-row">
+          <label for="name">Name:</label>
+          <input type="text" name="name" [(ngModel)]="newFood.itemName" required><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="price">Price:</label>
+          <input type="number" name="price" [(ngModel)]="newFood.price" required><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="description">Description:</label>
+          <textarea name="description" [(ngModel)]="newFood.description"></textarea><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="category">Category:</label>
+          <select name="category" [(ngModel)]="newFood.category" required>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="imageUrl">Image:</label>
+          <input type="file" (change)="onImageSelected($event)" accept="image/*" required>
+        </div>
+        <button type="submit">Add Item</button>
+      </form>
     </div>
-    <div class="modal-content-row">
-      <label for="price">Price:</label>
-      <input type="number" name="price" [(ngModel)]="newFood.price" required><br>
-    </div>
-    <div class="modal-content-row">
-      <label for="description" >Description:</label>
-      <textarea name="description" [(ngModel)]="newFood.description" ></textarea><br>
-    </div>
-    <div class="modal-content-row">
-      <label for="category" >Category:</label>
-      <input type="text" name="category" [(ngModel)]="newFood.category" required><br>
-    </div>
-    <div class="modal-content-row">
-      <label for="imageUrl">Image URL:</label>
-      <input type="text" name="imageUrl" [(ngModel)]="newFood.itemImage" required><br>
-    </div><div class="modal-content-row"></div>
-      <button type="submit" >Add Item</button>
-    </form>
+  </div>
 
+  <div *ngIf="selectedFood" id="editFoodModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal('editFoodModal')">&times;</span>
+      <h2>Edit Food</h2>
+      <form (ngSubmit)="onUpdateFood()" #editForm="ngForm">
+        <input type="hidden" name="id" [(ngModel)]="selectedFood.itemId">
+        <div class="modal-content-row">
+          <label for="edit-name">Name:</label>
+          <input type="text" name="edit-name" [(ngModel)]="selectedFood.itemName" required><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="edit-price">Price:</label>
+          <input type="number" name="edit-price" [(ngModel)]="selectedFood.price" required><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="edit-description">Description:</label>
+          <textarea name="edit-description" [(ngModel)]="selectedFood.description"></textarea><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="edit-category">Category:</label>
+          <select name="edit-category" [(ngModel)]="selectedFood.category" required>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select><br>
+        </div>
+        <div class="modal-content-row">
+          <label for="imageUrl">Image:</label>
+          <input type="file" (change)="onImageSelected($event)" accept="image/*" required>
+        </div>
+        <!-- <div class="modal-content-row">
+          <label for="edit-imageUrl">Image URL:</label>
+          <input type="text" name="edit-imageUrl" [(ngModel)]="selectedFood.itemImage" required><br>
+        </div> -->
+        <div class="modal-content-row-button">
+          <button type="submit">Update Item</button>
+          <button type="button" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="deleteFood" id="deleteFoodModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal('deleteFoodModal')">&times;</span>
+      <h2>Delete Food</h2>
+      <p>Are you sure you want to delete {{ deleteFood.itemId }}?</p>
+      <button (click)="onDeleteFood()">Yes</button>
+      <button (click)="closeModal('deleteFoodModal')">No</button>
+    </div>
+  </div>
+
+  <div *ngIf="foods.length > 0" class="form-group">
+    <ul>
+      <li *ngFor="let food of foods">
+        <img *ngIf="food.itemImage" [src]="food.itemImage" alt="{{ food.itemName }}"/><br>
+        <p style="color: brown;font-weight: bold;">{{ food.itemName }}</p>
+        <p>{{ food.price |  currency:'INR' }}</p>
+        <p class="description">{{ food.description }}</p>
+        <p style="color: brown; font-weight: bold;">{{ food.category }}</p>
+        <div class="button-container">
+          <button (click)="onOpenModal(food, 'edit')">Edit</button>
+          <button (click)="onOpenModal(food, 'delete')">Delete</button>
+        </div>
+      </li>
+      <li>
+        <div class="button-container-add">
+          <button (click)="onOpenModal(null, 'add')">Add</button>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
 
-<!-- Edit Food Modal -->
-<div *ngIf="selectedFood" id="editFoodModal" class="modal">
-  <div class="modal-content">
-    <span class="close" (click)="closeModal('editFoodModal')">&times;</span>
-    <h2>Edit Food</h2>
-    <form (ngSubmit)="onUpdateFood()" #editForm="ngForm">
-      <input type="hidden" name="id" [(ngModel)]="selectedFood.itemId">
-      <div class="modal-content-row">
-        <label for="edit-name">Name:</label>
-        <input type="text" name="edit-name" [(ngModel)]="selectedFood.itemName" required><br>
-      </div>
-      <div class="modal-content-row">
-        <label for="edit-price">Price:</label>
-        <input type="number" name="edit-price" [(ngModel)]="selectedFood.price" required><br>
-      </div>
-      <div class="modal-content-row">
-        <label for="edit-description">Description:</label>
-        <textarea name="edit-description" [(ngModel)]="selectedFood.description" ></textarea><br>
-      </div>
-      <div class="modal-content-row">
-        <label for="edit-category">Category:</label>
-        <input type="text" name="edit-category" [(ngModel)]="selectedFood.category" required><br>
-      </div>
-      <div class="modal-content-row">
-        <label for="edit-imageUrl">Image URL:</label>
-        <input type="text" name="edit-imageUrl" [(ngModel)]="selectedFood.itemImage" required><br>
-      </div>
-      <div class="modal-content-row-button">
-        <button type="submit">Update Item</button>
-        <button type="button" (click)="cancelEdit()">Cancel</button>
-      </div>
-
-    </form>
+<div id="orderList" class="tabcontent">
+  <h2>Order List</h2>
+  <div *ngIf="orders.length > 0">
+    <ul class="orderListUl">
+      <li *ngFor="let order of orders;let i=index">
+        <p>Order ID: {{ order.orderId }}</p>
+        <p [class]="order.orderStatus === 'Confirmed' ? 'confirmed' : 'pending'">Status: {{ order.orderStatus }}</p>
+        <ul>
+          <li *ngFor="let item of listFood[orders.indexOf(order)];let j=index ">
+            <div class="order-item">
+              <p>Item Name: {{ item.itemName }}</p>
+              <p>Price: {{ item.price |  currency:'INR' }}</p>
+              <p>Quantity: {{ item.quantity }}</p>
+            </div>
+          </li>
+        </ul>
+        <button (click)="confirmOrder(order.orderId)"  *ngIf="order.orderStatus !== 'Confirmed'">Confirm Order</button>
+      </li>
+    </ul>
   </div>
-</div>
-
-
-
-<!-- Delete Food Modal -->
-<div *ngIf="deleteFood" id="deleteFoodModal" class="modal">
-  <div class="modal-content">
-    <span class="close" (click)="closeModal('deleteFoodModal')">&times;</span>
-    <h2>Delete Food</h2>
-    <p>Are you sure you want to delete {{ deleteFood.itemId }}?</p>
-    <button (click)="onDeleteFood()">Yes</button>
-    <button (click)="closeModal('deleteFoodModal')">No</button>
+  <div *ngIf="orders.length === 0">
+    <p>No orders available.</p>
   </div>
-</div>
-
-<!-- Food List -->
-<div *ngIf="foods.length > 0 " class="form-group">
-  <ul>
-    <li *ngFor="let food of foods">
-      <a href=""><img src="{{food?.itemImage}}" alt="" ></a><br>
-      <p> {{ food.itemName }}</p>
-      <p> {{ food.price }}</p>
-      <p> {{ food.description }}</p>
-      <p>{{ food.category }}</p>
-
-      <div class="button-container">
-        <button (click)="onOpenModal(food, 'edit')">Edit</button>
-        <button (click)="onOpenModal(food, 'delete')">Delete</button>
-      </div>
-
-    </li>
-    <li >
-      <div class="button-container-add">
-        <button (click)="onOpenModal(null, 'add')">Add</button>
-      </div>
-    </li>
-
-  </ul>
 </div>
 

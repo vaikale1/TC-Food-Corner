@@ -9,12 +9,12 @@
 <div *ngIf="foods.length > 0 " class="form-group">
   <ul>
     <li *ngFor="let food of foods">
-      <a href=""><img src="{{food?.itemImage}}" alt="" ></a><br>
-      <p> {{ food.itemName }}</p>
-      <p> {{ food.price }}</p>
+      <img *ngIf="food.itemImage" [src]="food.itemImage" alt="{{ food.itemName }}" width="100" /><br>
+      <p style="color: brown;font-weight: bold;"> {{ food.itemName }}</p>
+      <p> {{ food.price |  currency:'INR'}}</p>
       <p> {{ food.description }}</p>
-      <p>{{ food.category }}</p>
-
+      <p style="color: brown;font-weight: bold;">{{ food.category }}</p>
+      <button (click)="addToCart(food.itemId)">Add to Cart</button>
 
     </li>
 

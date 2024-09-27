@@ -1,13 +1,28 @@
 <header>
   <div class="container">
-    <a href="#" routerLink='/' routerLinkActive="router-link-active"  class="logo">TC food corner</a>
+    <a class="logo">TC Food Corner</a>
     <nav>
-      <ul>
+      <ul class="menu">
+        <li class="menu-container" (click)="toggleNotifications()" aria-label="Notifications">
+          <span class="notification-bell">🔔</span>
+          <span *ngIf="notifications.length > 0" class="notification-count">{{ notifications.length }}</span>
+          <div *ngIf="showNotifications" class="notifications-dropdown">
+            <ul>
+              <li *ngFor="let notification of notifications"  (click)="onNotificationClick(notification)">
+                {{notification.message}}
+
+              </li>
+            </ul>
+          </div>
+        </li>
         <li class="menu-container">
-          <a routerLink="">Cart</a>
+          <button (click)="redirecToCart()" aria-label="Go to Cart">Cart</button>
+        </li>
+        <li class="menu-container">
+          <button (click)="logout()" aria-label="Logout">Logout</button>
         </li>
       </ul>
     </nav>
+
   </div>
 </header>
-
